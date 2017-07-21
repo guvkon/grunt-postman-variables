@@ -9,40 +9,46 @@
 'use strict';
 
 module.exports = function(grunt) {
+  grunt.registerMultiTask('postman_variables', 'Replace Postman variables in files from .postman_globals and/or .postman_environment file', function() {
+    var _ = require('lodash');
 
-  // Please see the Grunt documentation for more information regarding task
-  // creation: http://gruntjs.com/creating-tasks
-
-  grunt.registerMultiTask('postman_variables', 'Replace postamn variables in JS files ffrom globals.postman_globals', function() {
-    // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
-      punctuation: '.',
-      separator: ', '
+      globalsPath: 'globals.postman_globals',
+      environmentPath: 'environment.postman_environment'
     });
 
-    // Iterate over all specified file groups.
-    this.files.forEach(function(f) {
-      // Concat specified files.
-      var src = f.src.filter(function(filepath) {
-        // Warn on and remove invalid source files (if nonull was set).
-        if (!grunt.file.exists(filepath)) {
-          grunt.log.warn('Source file "' + filepath + '" not found.');
-          return false;
-        } else {
-          return true;
+    // Read globals and environment variables from provided files if exist.
+    var globals = {}, environment = {};
+    var parseVariablesFile = function (inputValues, output) {
+      _.forEach(inputValues, function (valueObj) {
+        if (valueObj.enabled) {
+          output[valueObj.key] = valueObj.value;
         }
-      }).map(function(filepath) {
-        // Read file source.
-        return grunt.file.read(filepath);
-      }).join(grunt.util.normalizelf(options.separator));
+      });
+    };
+    if (grunt.file.exists(options.globalsPath)) {
+      var globalsFile = grunt.file.readJSON(options.globalsPath);
+      parseVariablesFile(globalsFile.values, globals);
+    }
+    if (grunt.file.exists(options.environmentPath)) {
+      var environmentFile = grunt.file.readJSON(options.environmentPath);
+      parseVariablesFile(environmentFile.values, environment);
+    }
 
-      // Handle options.
-      src += options.punctuation;
+    // Main logic
+    var replaceContentWithVariables = function (content, variables) {
+      _.forEach(variables, function (value, key) {
+        var find = '{{' + key + '}}';
+        content = content.replace(new RegExp(find.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), 'g'), value);
+      });
+      return content;
+    };
+    this.files.forEach(function(f) {
+      var content = grunt.file.read(f.src);
+      content = replaceContentWithVariables(content, environment);
+      content = replaceContentWithVariables(content, globals);
 
-      // Write the destination file.
-      grunt.file.write(f.dest, src);
-
-      // Print a success message.
+      grunt.file.write(f.dest, content);
       grunt.log.writeln('File "' + f.dest + '" created.');
     });
   });

@@ -19,7 +19,8 @@ module.exports = function(grunt) {
         '<%= nodeunit.tests %>'
       ],
       options: {
-        jshintrc: '.jshintrc'
+        jshintrc: '.jshintrc',
+        reporterOutput: ""
       }
     },
 
@@ -30,20 +31,16 @@ module.exports = function(grunt) {
 
     // Configuration to be run (and then tested).
     postman_variables: {
-      default_options: {
+      test: {
         options: {
+          globalsPath: 'test/globals.postman_globals',
+          environmentPath: 'test/environment.postman_environment'
         },
         files: {
-          'tmp/default_options': ['test/fixtures/testing', 'test/fixtures/123']
-        }
-      },
-      custom_options: {
-        options: {
-          separator: ': ',
-          punctuation: ' !!!'
-        },
-        files: {
-          'tmp/custom_options': ['test/fixtures/testing', 'test/fixtures/123']
+          'tmp/single_variable_test': ['test/fixtures/single_variable_test'],
+          'tmp/single_variables_test': ['test/fixtures/single_variables_test'],
+          'tmp/multiple_variables_test': ['test/fixtures/multiple_variables_test'],
+          'tmp/globals_environment_test': ['test/fixtures/globals_environment_test']
         }
       }
     },

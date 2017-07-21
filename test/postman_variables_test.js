@@ -24,25 +24,42 @@ var grunt = require('grunt');
 
 exports.postman_variables = {
   setUp: function(done) {
-    // setup here if necessary
     done();
   },
-  default_options: function(test) {
+  single_variable: function(test) {
     test.expect(1);
 
-    var actual = grunt.file.read('tmp/default_options');
-    var expected = grunt.file.read('test/expected/default_options');
-    test.equal(actual, expected, 'should describe what the default behavior is.');
+    var actual = grunt.file.read('tmp/single_variable_test');
+    var expected = grunt.file.read('test/expected/single_variable_test');
+    test.equal(actual, expected, 'Replace of a single variable occurrence');
 
     test.done();
   },
-  custom_options: function(test) {
+  single_variables: function(test) {
     test.expect(1);
 
-    var actual = grunt.file.read('tmp/custom_options');
-    var expected = grunt.file.read('test/expected/custom_options');
-    test.equal(actual, expected, 'should describe what the custom option(s) behavior is.');
+    var actual = grunt.file.read('tmp/single_variables_test');
+    var expected = grunt.file.read('test/expected/single_variables_test');
+    test.equal(actual, expected, 'Replace of multiple occurrences of a variable');
 
     test.done();
   },
+  multiple_variables: function(test) {
+    test.expect(1);
+
+    var actual = grunt.file.read('tmp/multiple_variables_test');
+    var expected = grunt.file.read('test/expected/multiple_variables_test');
+    test.equal(actual, expected, 'Replace of multiple variables');
+
+    test.done();
+  },
+  globals_environment: function(test) {
+    test.expect(1);
+
+    var actual = grunt.file.read('tmp/globals_environment_test');
+    var expected = grunt.file.read('test/expected/globals_environment_test');
+    test.equal(actual, expected, 'Check replace priority of environment and globals variables');
+
+    test.done();
+  }
 };

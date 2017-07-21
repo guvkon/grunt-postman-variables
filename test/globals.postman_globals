@@ -1,0 +1,27 @@
+{
+  "id": "f9c17505-1f28-0e3f-5737-8f0424cf7022",
+  "name": "Postman Globals",
+  "values": [
+    {
+      "key": "test",
+      "value": "Test Variable",
+      "type": "text",
+      "enabled": true
+    },
+    {
+      "key": "test2",
+      "value": "Another Variable for Testing",
+      "type": "text",
+      "enabled": true
+    },
+    {
+      "key": "test3",
+      "value": "Another Variable for Testing",
+      "type": "text",
+      "enabled": true
+    }
+  ],
+  "_postman_variable_scope": "globals",
+  "_postman_exported_at": "2017-07-20T12:57:57.404Z",
+  "_postman_exported_using": "Postman/5.0.2"
+}
