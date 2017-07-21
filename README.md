@@ -1,6 +1,6 @@
 # grunt-postman-variables
 
-> Replace Postamn variables in JS files ffrom globals.postman_globals
+> Replace Postman variables in JS files from globals.postman_globals
 
 ## Getting Started
 This plugin requires Grunt `~0.4.5`
@@ -85,5 +85,3 @@ grunt.initConfig({
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
-## Release History
-_(Nothing yet)_
