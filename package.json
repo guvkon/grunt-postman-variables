@@ -34,6 +34,6 @@
     "lodash": "4.17.4"
   },
   "keywords": [
-    "gruntplugin"
+    "gruntplugin", "postman", "newman"
   ]
 }
