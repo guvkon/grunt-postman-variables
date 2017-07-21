@@ -1,6 +1,6 @@
 # grunt-postman-variables
 
-> Replace postamn variables in JS files ffrom globals.postman_globals
+> Replace Postamn variables in JS files ffrom globals.postman_globals
 
 ## Getting Started
 This plugin requires Grunt `~0.4.5`
