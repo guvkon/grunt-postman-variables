@@ -1,0 +1,38 @@
+{
+  "name": "grunt-postman-variables",
+  "description": "Replace postamn variables in JS files ffrom globals.postman_globals",
+  "version": "0.1.0",
+  "homepage": "https://github.com/guvkon/grunt-postman-variables",
+  "author": {
+    "name": "Konstantin Gusev",
+    "email": "guvkon@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/guvkon/grunt-postman-variables.git"
+  },
+  "bugs": {
+    "url": "https://github.com/guvkon/grunt-postman-variables/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/guvkon/grunt-postman-variables/blob/master/LICENSE-MIT"
+    }
+  ],
+  "engines": {
+    "node": ">= 4.0.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "^0.9.2",
+    "grunt-contrib-clean": "^0.5.0",
+    "grunt-contrib-nodeunit": "^0.3.3",
+    "grunt": "~0.4.5"
+  },
+  "keywords": [
+    "gruntplugin"
+  ]
+}
