@@ -1,7 +1,7 @@
 {
   "name": "grunt-postman-variables",
   "description": "Replace Postman variables in files from .postman_globals and/or .postman_environment file",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "homepage": "https://github.com/guvkon/grunt-postman-variables",
   "author": {
     "name": "Konstantin Gusev",

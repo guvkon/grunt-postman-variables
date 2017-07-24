@@ -41,13 +41,13 @@ grunt.initConfig({
 Type: `String`
 Default value: `'globals.postman_globals'`
 
-Path to Postman globals variables (e.g. `data/globals.postman_globals`).
+Path to Postman globals variables (e.g. `'data/globals.postman_globals'`).
 
 #### options.environmentPath
 Type: `String`
-Default value: `'environment.postman_environment`
+Default value: `'environment.postman_environment'`
 
-Path to Postman environment variables (e.g. `data/prod.postman_environment`).
+Path to Postman environment variables (e.g. `'data/prod.postman_environment'`).
 
 ### Usage Examples
 
@@ -59,7 +59,8 @@ grunt.initConfig({
     },
     files: {
       'dest/some_file.js': ['src/some_file.js'],
-      'dest/another_file.js': ['src/another_file.js']
+      'dest/another_file.js': ['src/another_file.js'],
+      'dest/some_directory': ['src/location/*.js']
     }
   }
 });
@@ -67,3 +68,13 @@ grunt.initConfig({
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
+
+
+## Release History
+
+1.1.0. Added support for writing multiple source files into a directory.
+
+
+## Credits
+
+This project was initially developed for [ManagingLife](http://www.managinglife.com/).

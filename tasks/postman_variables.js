@@ -11,6 +11,7 @@
 module.exports = function(grunt) {
   grunt.registerMultiTask('postman_variables', 'Replace Postman variables in files from .postman_globals and/or .postman_environment file', function() {
     var _ = require('lodash');
+    var path = require('path');
 
     var options = this.options({
       globalsPath: 'globals.postman_globals',
@@ -43,13 +44,20 @@ module.exports = function(grunt) {
       });
       return content;
     };
-    this.files.forEach(function(f) {
-      var content = grunt.file.read(f.src);
-      content = replaceContentWithVariables(content, environment);
-      content = replaceContentWithVariables(content, globals);
+    this.files.forEach(function(files) {
+      var writeToDir = files.src.length > 1 || (grunt.file.exists(files.dest) && grunt.file.isDir(files.dest));
+      _.forEach(files.src, function (file) {
+        var content = grunt.file.read(file);
+        content = replaceContentWithVariables(content, environment);
+        content = replaceContentWithVariables(content, globals);
 
-      grunt.file.write(f.dest, content);
-      grunt.log.writeln('File "' + f.dest + '" created.');
+        var destination = files.dest;
+        if (writeToDir) {
+          destination += path.sep + path.basename(file);
+        }
+        grunt.file.write(destination, content);
+        grunt.log.writeln('File "' + destination + '" created.');
+      });
     });
   });
 

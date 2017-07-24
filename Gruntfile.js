@@ -37,9 +37,8 @@ module.exports = function(grunt) {
           environmentPath: 'test/environment.postman_environment'
         },
         files: {
+          'tmp': ['test/fixtures/*_variables_test'],
           'tmp/single_variable_test': ['test/fixtures/single_variable_test'],
-          'tmp/single_variables_test': ['test/fixtures/single_variables_test'],
-          'tmp/multiple_variables_test': ['test/fixtures/multiple_variables_test'],
           'tmp/globals_environment_test': ['test/fixtures/globals_environment_test']
         }
       }
