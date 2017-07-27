@@ -41,6 +41,16 @@ module.exports = function(grunt) {
           'tmp/single_variable_test': ['test/fixtures/single_variable_test'],
           'tmp/globals_environment_test': ['test/fixtures/globals_environment_test']
         }
+      },
+      replace_with_pattern: {
+        options: {
+          globalsPath: 'test/globals.postman_globals',
+          environmentPath: 'test/environment.postman_environment',
+          replaceWithPattern: '" + _.environment(\'__variable__\') + "'
+        },
+        files: {
+          'tmp/replace_with_pattern_test': ['test/fixtures/replace_with_pattern_test']
+        }
       }
     },
 

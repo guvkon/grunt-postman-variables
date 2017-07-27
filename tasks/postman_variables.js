@@ -15,7 +15,8 @@ module.exports = function(grunt) {
 
     var options = this.options({
       globalsPath: 'globals.postman_globals',
-      environmentPath: 'environment.postman_environment'
+      environmentPath: 'environment.postman_environment',
+      replaceWithPattern: false
     });
 
     // Read globals and environment variables from provided files if exist.
@@ -44,12 +45,27 @@ module.exports = function(grunt) {
       });
       return content;
     };
+    var replaceContentWithPattern = function (content, pattern) {
+      var re = /{{(.*?)}}/g, match;
+
+      do {
+        match = re.exec(content);
+        if (match === null) {
+          break;
+        }
+        content = content.replace(match[0], pattern.replace(/__variable__/g, match[1]));
+      } while (true);
+      return content;
+    };
     this.files.forEach(function(files) {
       var writeToDir = files.src.length > 1 || (grunt.file.exists(files.dest) && grunt.file.isDir(files.dest));
       _.forEach(files.src, function (file) {
         var content = grunt.file.read(file);
         content = replaceContentWithVariables(content, environment);
         content = replaceContentWithVariables(content, globals);
+        if (options.replaceWithPattern) {
+          content = replaceContentWithPattern(content, options.replaceWithPattern);
+        }
 
         var destination = files.dest;
         if (writeToDir) {

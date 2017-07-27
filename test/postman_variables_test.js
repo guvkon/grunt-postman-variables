@@ -61,5 +61,14 @@ exports.postman_variables = {
     test.equal(actual, expected, 'Check replace priority of environment and globals variables');
 
     test.done();
+  },
+  replace_with_pattern: function(test) {
+    test.expect(1);
+
+    var actual = grunt.file.read('tmp/replace_with_pattern_test');
+    var expected = grunt.file.read('test/expected/replace_with_pattern_test');
+    test.equal(actual, expected, 'Check replace with pattern');
+
+    test.done();
   }
 };

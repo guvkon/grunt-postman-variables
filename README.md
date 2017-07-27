@@ -49,13 +49,21 @@ Default value: `'environment.postman_environment'`
 
 Path to Postman environment variables (e.g. `'data/prod.postman_environment'`).
 
+#### options.replaceWithPattern
+Type: `String`
+Default value: `false`
+
+(optional) String pattern which should be used to replace the rest of variables not covered by global and environment variables.
+`__variable__` can be used in the pattern to refer to the variable's name.
+
 ### Usage Examples
 
 ```js
 grunt.initConfig({
   postman_variables: {
     options: {
-      environmentPath: 'environments/dev.postman_environment'
+      environmentPath: 'environments/dev.postman_environment',
+      replaceWithPattern: '_.getVar("__variable__")'
     },
     files: {
       'dest/some_file.js': ['src/some_file.js'],
